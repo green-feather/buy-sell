@@ -1,3 +1,4 @@
+// commenting this out to play with postgres
 const mongoose = require('mongoose');
 const db = require('./index.js');
 mongoose.Promise = global.Promise;

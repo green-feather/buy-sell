@@ -4,6 +4,11 @@ const Stock = require('./Stock.js');
 const Faker = require('faker');
 // const disconnect = require('./index/')
 
+
+
+
+/* 
+
 var stocks = [];
 const companyData = [
     { id: '001', ticker: 'SNAP', company: 'Snap' },
@@ -147,3 +152,5 @@ insertSampleData();
 //console.log(stocks);
 //console.log(stocks[0])
 //console.log((1.2 - 1.4).toFixed(2));
+
+ */
