@@ -37,4 +37,26 @@ npm install -g webpack
 npm install
 ```
 
-# stock-chart
+### CRUD API
+
+  ### 1. Show price information for one company
+  ```sh
+  GET - /api/stocks/:stockId
+  ```
+
+  ### 2. Create new stock entry
+  ```sh
+  POST - /api/stocks/:stockId
+  ```
+  
+  ### 3. Patch new stock price for company
+  ```sh
+  PATCH - /api/stocks/:stockId
+  ```
+  
+  ### 4. Delete information for one stock
+  ```sh
+  DELETE - /api/stocks/:stockId
+  ```
+  
+

@@ -1,10 +1,15 @@
 // gunzip -c data.gz | node data-gen/data-extract.js
+const Faker = require('faker');
+
+function getRandStockPrice() {
+  return Faker.finance.amount(10.00, 40.00);
+}
 testData = genDummyRecords();
 console.log(testData);
 
 function genDummyRecords() {
   let id = 0;
-  // let count = 0;
+  let count = 0;
   let records = [];
   for (var i = 0; i < 26; i++) {
     let chr_1 = String.fromCharCode(65 + i);
@@ -20,13 +25,14 @@ function genDummyRecords() {
             id += 1;
             let data = {
               id: id,
-              ticker: ticker
+              ticker: ticker,
+              currentPrice: getRandStockPrice()
             }
             records.push(data);
-            // count++;
-            // if (count > 1000) {
-            //   return JSON.stringify(records);
-            // }
+            count++;
+            if (count > 1000) {
+              return JSON.stringify(records);
+            }
           }
         }
       }
