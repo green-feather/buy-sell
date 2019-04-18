@@ -1,6 +1,4 @@
-# Project Name
-
-> Project description
+# Robinhood Buy-Sell Module
 
 ## Related Projects
 

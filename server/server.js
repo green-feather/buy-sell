@@ -20,8 +20,10 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(express.static(__dirname + '/../public/'));
 
-app.get('/stocks/:query', (req, res) => {
-    const ticker = req.params.query;
+/* ROUTE HANDLERS */
+app.get('/stocks/:stockId', (req, res) => {
+    const stockId = req.params.query;
+
     /* POSTGRES SECTION */
     let pgQueryStr = `SELECT ${ticker} FROM test;`;
     pool.query(pgQueryStr, (err, res) => {
@@ -30,7 +32,6 @@ app.get('/stocks/:query', (req, res) => {
         }
         res.status(200).json(results.rows);
     })
-
     /* MONGOOSE SECTION */
     // var dbQuery = {ticker : req.params.query}
     //  if(parseInt(query)) {
@@ -44,8 +45,22 @@ app.get('/stocks/:query', (req, res) => {
     // });
     
 })
+// POSTS new stock to the DB
+app.post('/stocks/:stockId', (req, res) => {
+    const stockId = req.params.query;
+    res.status(200).json(stockId);
+})
+// PATCHES currentPrice for existing stock within the DB
+app.patch('/stocks/:stockId', (req, res) => {
+    const stockId = req.params.query;
+    res.status(200).json(stockId);
+})
+// DELETES stock from the DB
+app.delete('/stocks/:stockId', (req, res) => {
+    const stockId = req.params.query;
+    res.status(200).json(stockId);
 
-
+})
 app.listen(port, () => {
     console.log('Server listening on port ', port);
 })
