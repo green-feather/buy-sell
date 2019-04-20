@@ -9,8 +9,6 @@ var cors = require('cors');
 
 // postgres/sequalize dependencies
 const db = require('../database-postgres/index.js');
-
-
 var port = 8080;
 var app = express();
 
@@ -21,38 +19,24 @@ app.use(bodyParser.json())
 app.use(express.static(__dirname + '/../public/'));
 
 /* ROUTE HANDLERS */
-app.get('/stocks/:stockId', (req, res) => {
-    const stockId = req.params.query;
-
-    /* POSTGRES SECTION */
-    let pgQueryStr = `SELECT ${ticker} FROM test;`;
-    pool.query(pgQueryStr, (err, res) => {
-        if (err) {
-            throw err;
+app.get('/stocks/:stockId', (request, response) => {
+    const id = request.params.stockId;
+/* POSTGRES SECTION */
+    db.query('SELECT * FROM stocks WHERE id = $1', [id], (error, results) => {
+        if (error) {
+            throw error
         }
-        res.status(200).json(results.rows);
+        response.status(200).json(results.rows)
     })
-    /* MONGOOSE SECTION */
-    // var dbQuery = {ticker : req.params.query}
-    //  if(parseInt(query)) {
-    //      dbQuery = {id : req.params.query}
-    //  }
-    // Stock.find(dbQuery, (err, data) => {
-    //     if(err) { 
-    //         throw err;
-    //     }
-    //         res.send(JSON.stringify(data))
-    // });
-    
 })
 // POSTS new stock to the DB
 app.post('/stocks/:stockId', (req, res) => {
-    const stockId = req.params.query;
+    const id = request.params.stockId;
     res.status(200).json(stockId);
 })
 // PATCHES currentPrice for existing stock within the DB
 app.patch('/stocks/:stockId', (req, res) => {
-    const stockId = req.params.query;
+    const stockId = req.paidrams.query;
     res.status(200).json(stockId);
 })
 // DELETES stock from the DB
