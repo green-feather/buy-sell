@@ -16,13 +16,13 @@ class App extends React.Component {
         this.state = {
             mode : 'Market Order',
             shares: 'none',
-            price: 0
+            price: 0,
+            ticker: null
         };
-        
     }
-
     componentDidMount() {
-        var url = '/stocks/AAPL'
+        var ticker = window.location.pathname.split('/').filter((el) => !!el).pop();
+        var url = `/api/stocks/${ticker}`;
         var appThis = this;
         fetch(url)
         .then(response => {
@@ -31,7 +31,7 @@ class App extends React.Component {
         .then(result => {
             result = result[0].currentPrice;
             appThis.setState({
-                price : result
+                price: result,
             })
         })
     }
@@ -64,7 +64,6 @@ class App extends React.Component {
             midContent = 
             (
             <div className='app_buySell_orderInfo'>
-                                
                 <Shares handleChange={this.handleShares.bind(this)}/>
                 <Pricing price={this.state.price}/>
                 <EstimatedCost price={this.state.price} handleCost={this.state.shares}/>              
@@ -105,7 +104,7 @@ class App extends React.Component {
         return (
             <form className='app_buySell_orderForm'>
                <div className='app_buySell_cardHeader'>
-                   <StockTitle changeMode={this.changeMode.bind(this)}/>
+                    <StockTitle ticker={this.state.ticker} changeMode={this.changeMode.bind(this)}/>
                </div> 
                {midContent}
                <CheckBox />

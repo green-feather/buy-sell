@@ -1,31 +1,15 @@
-var ExpressCassandra = require('express-cassandra');
+const cassandra = require('cassandra-driver');
 
-var models = ExpressCassandra.createClient({
-  clientOptions: {
-    contactPoints: ['127.0.0.1'],
-    protocolOptions: {
-      port: 9042
-    },
-    keyspace: 'mykeyspace',
-    queryOptions: {
-      consistency: ExpressCassandra.consistencies.one
-    }
-  },
-  ormOptions: {
-    defaultReplicationStrategy: {
-      class: 'SimpleStrategy',
-      replication_factor: 1
-    },
-    migration: 'safe',
-  }
+const client = new cassandra.Client({
+  contactPoints: ['localhost'],
+  localDataCenter: 'datacenter1',
+  keyspace: 'buysell'
 });
 
-var MyModel = models.loadSchema('Person', {
-  fields: {
-    name: "text",
-    surname: "text",
-    age: "int",
-    created: "timestamp"
-  },
-  key: ["name"]
-});
+const createTableQuery = 'CREATE TABLE buysell.stocks ( id int PRIMARY KEY, ticker text, currentPrice float);';
+client.execute(createTableQuery)
+  .then(() => {
+    console.log('uhh i guess we created the table');
+    process.exit();
+  });
+// const query = 'SELECT name, email FROM users WHERE key = ?';
