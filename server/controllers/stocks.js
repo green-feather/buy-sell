@@ -7,11 +7,11 @@ exports.getStockInfo = (req, res) => {
     if (error) {
       throw error;
     }
-    console.log(data.rows[0]);
-    res.status(200).send(JSON.stringify(data.rows[0]));
+    res.send(JSON.stringify(data.rows[0]));
   })
 }
 
+/* 
 exports.createStock = (req, res) => {
   const payload = req.body;
 
@@ -20,3 +20,4 @@ exports.createStock = (req, res) => {
   console.log(payload);
   res.status(200).json(stockId);
 }
+*/

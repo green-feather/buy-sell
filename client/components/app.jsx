@@ -9,7 +9,6 @@ import ReviewOrder from './reviewOrder.jsx';
 import BuyingPower from './buyingPower.jsx';
 import DropDownInput from './dropDownInput.jsx';
 
-
 class App extends React.Component {
     constructor(props) {
         super(props);
@@ -29,7 +28,7 @@ class App extends React.Component {
             return response.json();
         })
         .then(result => {
-            result = result[0].currentPrice;
+            result = result.currentprice;
             appThis.setState({
                 price: result,
             })
