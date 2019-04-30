@@ -21,7 +21,7 @@ class App extends React.Component {
     }
     componentDidMount() {
         var ticker = window.location.pathname.split('/').filter((el) => !!el).pop();
-        var url = `/api/stocks/${ticker}`;
+        var url = `/api/${ticker}`;
         var appThis = this;
         fetch(url)
         .then(response => {
