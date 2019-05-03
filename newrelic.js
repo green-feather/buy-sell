@@ -9,7 +9,7 @@ exports.config = {
   /**
    * Array of application names.
    */
-  app_name: ['buysell'],
+  app_name: ['buysell-ec2-instance'],
   /**
    * Your New Relic license key.
    */

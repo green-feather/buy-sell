@@ -3,6 +3,7 @@ require('dotenv').config()
 var express = require('express');
 var bodyParser  = require('body-parser');
 var cors = require('cors');
+const path = require('path');
 
 // postgres
 const db = require('../database-postgres/index.js');
@@ -15,10 +16,20 @@ var app = express();
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+
+// to pass the loader.io verification
+app.get('/loaderio-d10429cb800392bd42b087abc1827493/', (req, res) => {
+    let address = path.resolve(__dirname, '../loaderio-d10429cb800392bd42b087abc1827493.txt');
+    res.sendFile(address);
+});
+
 app.use('/:stockId', express.static('../public/'));
 
+
+
 // get stock info for the ticker sent within the url
-app.get('/api/:stockId', stocks.getStockInfo);
+app.get('/api/stocks/:stockId', stocks.getStockInfo);
+
 // create a new record in the db based on the request body
 // app.post('/api/stocks', stocks.createStock)
 
