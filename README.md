@@ -1,11 +1,13 @@
-# Project Name
+# Green Arrow BuySell module
 
-> Project description
+This projects creates the infrastructure for storing 10 million unique stock tickers and their pricing information.
+## CRUD API
+
+Show info about one stock
+`GET - /stocks/:stockId`
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
   - https://github.com/teamName/repo
   - https://github.com/teamName/repo
 
@@ -36,5 +38,3 @@ From within the root directory:
 npm install -g webpack
 npm install
 ```
-
-# stock-chart
