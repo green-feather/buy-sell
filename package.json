@@ -47,7 +47,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.5.0",
     "jest-css-modules": "^2.0.0",
-    "jest-transform-css": "^2.0.0",
+    "jest-transform-css": "^6.0.0",
     "nodemon": "^1.18.10",
     "style-loader": "^0.23.1",
     "supertest": "^4.0.2",
